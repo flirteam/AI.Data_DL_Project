@@ -1,5 +1,5 @@
 import pandas as pd
-####데이터 가공하는 첫번째 과정 #####
+#####데이터 가공하는 첫번째 과정 ######
 input_file = 'myPC/input_data.csv' 
 output_file = 'myPC/output_data_with_gender.csv' 
 df = pd.read_csv(input_file)
