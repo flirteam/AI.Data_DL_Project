@@ -1,5 +1,5 @@
-#목표일 합리적으로 바꾸는 코드
-# import pandas as pd
+#bmi 데이터 생체데이터로 만들기 
+import pandas as pd
 import numpy as np
 
 def augment_and_update_days_to_goal(file_path, output_path):
@@ -9,24 +9,39 @@ def augment_and_update_days_to_goal(file_path, output_path):
     # DaysToGoal 계산 함수
     def calculate_days_to_goal(goal_type, weight_diff):
         if goal_type == "저지방 고단백":
-            daily_change = np.random.uniform(0.2, 0.5)  # 하루 0.2~0.5kg 감소
-        elif goal_type == "균형 식단":
-            daily_change = np.random.uniform(0.05, 0.2)  # 하루 0.05~0.2kg 변화
-        elif goal_type == "벌크업":
-            daily_change = np.random.uniform(0.1, 0.3)  # 하루 0.1~0.3kg 증가
-        else:
-            daily_change = 0.1  # 기본값
+            if abs(weight_diff) <= 5:
+                days = np.random.uniform(3, 18)  # 몸무게 차이가 ±5kg일 때
+            elif abs(weight_diff) <= 10:
+                days = np.random.uniform(88, 104)  # 몸무게 차이가 ±10kg일 때
+            elif abs(weight_diff) <= 20:
+                normalized_diff = (abs(weight_diff) - 10) / 10
+                days = np.random.uniform(204, 294) * normalized_diff + 204
+            elif abs(weight_diff) <= 30:
+                normalized_diff = (abs(weight_diff) - 20) / 10
+                days = np.random.uniform(387, 627) * normalized_diff + 387
+            else:
+                days = np.random.uniform(387, 627)  # 기본값
 
-        # 목표 도달 예상 일수 계산
-        days = abs(weight_diff) / daily_change
+            return int(np.clip(days, 3, 627))
 
-        # 목표 유형별 최소/최대 값으로 제한
-        if goal_type == "저지방 고단백":
-            return int(np.clip(days, 30, 180))
         elif goal_type == "균형 식단":
-            return int(np.clip(days, 14, 120))
+            return int(np.random.uniform(12, 33))  # 균형 식단은 12~33일 사이
+
         elif goal_type == "벌크업":
-            return int(np.clip(days, 30, 150))
+            if abs(weight_diff) <= 5:
+                days = np.random.uniform(3, 18)
+            elif abs(weight_diff) <= 10:
+                days = np.random.uniform(88, 104)
+            elif abs(weight_diff) <= 20:
+                normalized_diff = (abs(weight_diff) - 10) / 10
+                days = np.random.uniform(204, 294) * normalized_diff + 204
+            elif abs(weight_diff) <= 30:
+                normalized_diff = (abs(weight_diff) - 20) / 10
+                days = np.random.uniform(387, 627) * normalized_diff + 387
+            else:
+                days = np.random.uniform(387, 627)
+
+            return int(np.clip(days, 3, 627))
 
     # 기존 데이터의 DaysToGoal 업데이트
     for idx, row in data.iterrows():
@@ -111,5 +126,5 @@ def augment_and_update_days_to_goal(file_path, output_path):
 
 # 사용 예시
 input_file_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터증강/제발2goal_BMI.csv'  # 입력 파일 경로
-output_file_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터증강/제발4goal_BMI.csv'  # 출력 파일 경로
+output_file_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터증강/Maxgoal_BMI.csv'  # 출력 파일 경로
 augment_and_update_days_to_goal(input_file_path, output_file_path)
