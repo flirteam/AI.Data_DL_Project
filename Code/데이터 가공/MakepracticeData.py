@@ -3,10 +3,10 @@ import numpy as np
 import random
 
 # 파일 경로 설정
-bmi_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터증강/제발4goal_BMI.csv'
+bmi_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/데이터증강_추가2.csv'
 exercise_path = '/content/drive/MyDrive/Colab Notebooks/P프로젝트/exercise.csv'
 food_path = '/content/drive/MyDrive/Colab Notebooks/P프로젝트/lastfood_data.csv'
-output_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터증강/찐막이길_FEBMI.csv'
+output_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침99.csv'
 
 # 1. BMI 데이터 로드 및 전처리
 bmi_data = pd.read_csv(bmi_path)
@@ -28,9 +28,8 @@ bmi_data['BMR'] = 10 * bmi_data['Weight'] + 6.25 * (bmi_data['Height'] * 100) - 
 bmi_data['BMR'] += bmi_data['Gender'].map({'Male': 5, 'Female': -161})
 bmi_data['TDEE'] = bmi_data['BMR'] * bmi_data['ActivityLevel']
 
-# 칼로리 적자 설정
-bmi_data['Calorie_Deficit'] = bmi_data['BMI'].apply(lambda bmi: 0 if bmi < 18.5 else (250 if bmi < 23 else (500 if bmi < 30 else 750)))
-bmi_data['Calorie_Target'] = bmi_data['TDEE'] - bmi_data['Calorie_Deficit']
+# 칼로리 타겟 설정
+bmi_data['Calorie_Target'] = bmi_data['TDEE'] * 0.8  # 기본적으로 TDEE의 80%를 목표로 설정
 
 bmi_data['user_id'] = range(1, len(bmi_data) + 1)
 
@@ -58,7 +57,6 @@ food_data.columns = food_data.columns.str.strip().str.lower()
 # 필수 열에 대해 결측값 제거
 required_columns = ['name', 'calories', 'carbs', 'protein', 'fat']
 food_data.dropna(subset=required_columns, inplace=True)
-
 
 # 4. 추천 함수 정의
 
@@ -93,7 +91,7 @@ def select_food(foods, carb_target, protein_target, fat_target, portion_factor):
         "calories": round(selected['calories'].values[0] * (portion / 100), 2)
     }
 
-def recommend_exercises(user_physical_info, exercise_base, preference=None):
+def recommend_exercises(user_physical_info, exercise_base, preference):
     bmi = user_physical_info['BMI']
 
     if preference:
@@ -146,6 +144,16 @@ def adjust_amr_based_on_bmi(amr, bmi):
     else:
         return amr * 0.9
 
+def calculate_calorie_balance(user_info, daily_diet, exercise_entry):
+    total_food_calories = sum(details['calories'] for details in daily_diet.values())
+    total_calories_burned = user_info['TDEE'] + exercise_entry['하루소모칼로리']
+    calorie_balance = total_food_calories - total_calories_burned
+    return calorie_balance
+
+def estimate_weight_change(calorie_balance, duration_days):
+    weight_change = calorie_balance * duration_days / 7700
+    return weight_change
+
 def recommend_7_days_plan(bmi_data, exercise_base, food_data, output_csv_path):
     full_plan = []
 
@@ -158,10 +166,10 @@ def recommend_7_days_plan(bmi_data, exercise_base, food_data, output_csv_path):
             protein_target = (adjusted_amr * 0.3) / 4
             fat_target = (adjusted_amr * 0.2) / 9
 
-            for day in range(1, 8):
-                preference = random.choice(['가슴', '어깨', '등', '하체', None])
-                exercises = recommend_exercises(user_info, exercise_base, preference)
+            preference = random.choice(['가슴', '어깨', '등', '하체', None])
+            exercises = recommend_exercises(user_info, exercise_base, preference)
 
+            for day in range(1, 8):
                 exercise_entry = {'user_id': user['user_id'], 'day': day, 'preferred_body_part': preference}
                 total_calories_burned = 0
                 total_duration = 0
@@ -186,7 +194,10 @@ def recommend_7_days_plan(bmi_data, exercise_base, food_data, output_csv_path):
                 total_food_calories = sum(details['calories'] for details in daily_diet.values())
                 diet_entry['총 식사섭취 칼로리'] = total_food_calories
 
-                full_plan.append({**exercise_entry, **diet_entry})
+                calorie_balance = calculate_calorie_balance(user_info, daily_diet, exercise_entry)
+                weight_change = estimate_weight_change(calorie_balance, duration_days=1)
+
+                full_plan.append({**exercise_entry, **diet_entry, '일일칼로리균형': calorie_balance, '일일체중변화(kg)': weight_change})
         except Exception as e:
             print(f"사용자 {user['user_id']}의 데이터 생성 중 오류 발생: {e}")
 
