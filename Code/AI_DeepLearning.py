@@ -7,32 +7,24 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-import random
 import json
 from joblib import dump
 
-# 시드값 설정
-def set_seed(seed=42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-
-set_seed(42)  # 시드값 설정
-
 # 파일 경로 설정
-input_path = '/content/drive/MyDrive/Colab Notebooks/P프데이터/Finish_FEBMI.csv'
+input_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침99.csv'
 
 # 1. 데이터 로드
 input_data = pd.read_csv(input_path)
 
+# WeightDifference 특성 추가
+input_data['WeightDifference'] = input_data['TargetWeight'] - input_data['Weight']
+
 # Feature 선택
 features = [
-    'Age', 'Height', 'Weight', 'BMR', 'TDEE', 'BMI', 'TargetBMI', 
-    'Calorie_Target', 'Calorie_Deficit', '총 운동시간', '하루소모칼로리', 
-    '총 식사섭취 칼로리', 'ActivityLevel'
+    'Age', 'Height', 'Weight', 'BMR', 'TDEE', 'BMI', 'TargetBMI',
+    'Calorie_Target', '총 운동시간', '하루소모칼로리',
+    '총 식사섭취 칼로리', 'ActivityLevel', 'WeightDifference',
+    '일일칼로리균형', '일일체중변화(kg)', 'DaysToGoal'
 ]
 
 # 범주형 변수 (One-Hot Encoding 대상)
@@ -209,10 +201,6 @@ mae_test = mean_absolute_error(test_actuals, test_predictions)
 mse_test = mean_squared_error(test_actuals, test_predictions)
 r2_test = r2_score(test_actuals, test_predictions)
 
-# 학습이 끝난 후 최적 모델 저장
-save_path = "/content/drive/MyDrive/Colab Notebooks/P프로젝트/P_model.pth"
-torch.save(best_model.state_dict(), save_path)
-print(f"모델 가중치 저장 완료: {save_path}")
 
 # 최종 결과 출력
 print("\nTest Performance:")
@@ -222,17 +210,17 @@ print(f"Test R²: {r2_test:.2f}")
 
 # 1. Feature 열 저장
 feature_columns = list(pd.get_dummies(input_data[features + categorical_features], columns=categorical_features).columns)
-feature_path = "/content/drive/MyDrive/Colab Notebooks/P프데이터/feature_columns.json"
+feature_path = "/content/drive/MyDrive/Colab Notebooks/P프끝/라스트99feature_columns.json"
 with open(feature_path, 'w') as f:
     json.dump(feature_columns, f)
 print(f"Feature 목록 저장 완료: {feature_path}")
 
 # 2. Scaler 저장
-scaler_path = "/content/drive/MyDrive/Colab Notebooks/P프데이터/scaler.joblib"
+scaler_path = "/content/drive/MyDrive/Colab Notebooks/P프끝/라스트99scaler.joblib"
 dump(scaler, scaler_path)
 print(f"Scaler 저장 완료: {scaler_path}")
 
 # 3. 모델 가중치 저장
-model_path = "/content/drive/MyDrive/Colab Notebooks/P프데이터/P_model.pth"
+model_path = "/content/drive/MyDrive/Colab Notebooks/P프끝/라스트99P_model.pth"
 torch.save(best_model.state_dict(), model_path)
 print(f"모델 가중치 저장 완료: {model_path}")
