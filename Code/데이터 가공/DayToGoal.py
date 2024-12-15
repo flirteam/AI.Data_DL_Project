@@ -1,4 +1,5 @@
 #bmi 데이터 생체데이터로 만들기 
+#목표일 재계산해주는 코드
 import pandas as pd
 import numpy as np
 
