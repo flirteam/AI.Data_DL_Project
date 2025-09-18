@@ -30,7 +30,8 @@
 
 <br><br>
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ACDFD8,10:B6D7A8,30:D3FFCE,75:CBD0E3,100:A371F7&height=100&section=header&text=안녕하세요!&fontSize=50&textColor=000000" />
+  <img width="192" height="212" alt="스크린샷 2025-09-18 오후 2 49 31" src="https://github.com/user-attachments/assets/fa5e9f0a-4f7f-469d-87cf-120a33013435" />
+
 </p>
 
 <h2 align="center"> 홍영훈 👋</h2>
