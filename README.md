@@ -14,7 +14,7 @@
 <br>
 이러한 문제를 해결하기 위해 우리는 사용자 대신 귀찮은 부분을 처리해주는 맞춤형 서비스를 제안한다. 사용자는 따로 정보를 검색할 필요 없이, 바로 식단과 운동 루틴을 추천받을 수 있다. 또한, 해당 루틴을 꾸준히 실천했을 때 목표 체중까지 도달하는 예상 기간을 제공함으로써, 사용자가 목표를 달성하기 위해 필요한 모든 서비스를 지원하고 도전 의지를 고취할 수 있을 것이라 기대된다.
 
-
+<br><br>
 
 
 <p align="center">
@@ -30,10 +30,10 @@
 [Fitter 구현 영상]
 <p align="center">
   <a href="Fitter구현 영상.mp4">
-    <img src="<img width="292" height="371" alt="피터앱실현영상썸네일" src="https://github.com/user-attachments/assets/f45082b6-a1cc-4068-9da4-8bfc73dfb821" />
-" width="400"/>
+    <img width="292" height="371" alt="피터앱실현영상썸네일" src="https://github.com/user-attachments/assets/9f34992d-0995-424d-b7ef-5a4419da340b" />
   </a>
 </p>
+
 
 
 [ML프로젝트 간이 절차]
