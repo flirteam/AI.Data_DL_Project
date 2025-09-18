@@ -18,7 +18,10 @@
 
 
 <p align="center">
-  <img src="fitter식단추천.gif" width="400" />
+   <img src="image6.gif" width="400" />
+   <img src="image7.gif" width="400" />
+   <img src="image8.gif" width="400" />
+   <img src="image9.gif" width="400" />
 </p>
 
 
