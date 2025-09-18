@@ -62,7 +62,12 @@
 ---
 
 <br><br>
-[BMI DATA 확인]
+
+<p align="center">
+   [BMI DATA 확인]
+</p>
+
+
 
 [데이터 탐색 및 준비]
 <br>
