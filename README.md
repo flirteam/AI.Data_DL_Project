@@ -98,13 +98,13 @@
 <br>
 🚨 신체 정보 데이터는 개인정보! 기초 데이터를 토대로 임의의 값을 랜덤하게 할당하여 741개의 새로운 신체정보 데이터를 생성 🚨 
 <br><br>
-BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류
-목표 체중(TargetWeight): 개인별 목표 체중 설정
-활동 수준(Activity Level): 일일 활동량 숫자로 분류 1~4
-목표 유형(GoalType): 다이어트,유지,벌크업
-성별(Gender): 성별 추가
-목표 달성 여부(Achieved): 달성 여부 이진 변수로 표현
-목표 달성 기간(DaysToGoal): 목표 달성 기간
+BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
+목표 체중(TargetWeight): 개인별 목표 체중 설정 <br>
+활동 수준(Activity Level): 일일 활동량 숫자로 분류 1~4 <br>
+목표 유형(GoalType): 다이어트,유지,벌크업 <br>
+성별(Gender): 성별 추가 <br>
+목표 달성 여부(Achieved): 달성 여부 이진 변수로 표현 <br>
+목표 달성 기간(DaysToGoal): 목표 달성 기간 <br>
 <br>
 <img width="577" height="213" alt="bmi가공사진" src="https://github.com/user-attachments/assets/98714bc6-ff1e-422d-8bb6-f64f7146a16b" />
 
