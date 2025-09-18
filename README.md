@@ -60,14 +60,50 @@
 
 [BMI DATA 확인]
 
-1. 데이터 탐색 및 준비
-* 데이터 확인: 741명의  키, 몸무게, BMI, 성별, 나이 등의 정보가 있음
-* 결측치 처리: 데이터에서 누락된 값이 있는지 확인하고, 필요하면 채우거나 제거
-* 데이터 변환: BMI 값에 따라 사용자들을 분류하거나, 나이, 성별, 체중 등을 바탕으로 새로운 피처를 생성할 수 있음.
-* 관련 코드 부분 예시:https://www.kaggle.com/code/ahthneeuhl/bmi-data-analysis-visualization-and-predictions
-* 
+[데이터 탐색 및 준비]
+<br>
+<img width="930" height="194" alt="스크린샷 2025-09-18 오후 2 58 35" src="https://github.com/user-attachments/assets/51895a87-599f-416f-87ce-813280fbe66c" />
 
-2. 운동 추천 기준 설정
+초기 데이터: https://www.kaggle.com/datasets/rukenmissonnier/age-weight-height-bmi-analysis
+<br>
+<img width="365" height="305" alt="스크린샷 2025-09-18 오후 3 00 10" src="https://github.com/user-attachments/assets/5578834b-56bb-4ee6-a4eb-13e67b341bc8" />
+
+<데이터 샘플 >
+-500개
+<항목>
+-Age, Weight, Height, BMI
+<br>
+
+---
+<br>
+[데이터 가공]
+<br>
+초기 데이터를 활용하여 새로운 신체 데이터를 생성.
+<br>
+🚨 신체 정보 데이터는 개인정보! 기초 데이터를 토대로 임의의 값을 랜덤하게 할당하여 741개의 새로운 신체정보 데이터를 생성 🚨 
+<br>
+BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류
+목표 체중(TargetWeight): 개인별 목표 체중 설정
+활동 수준(Activity Level): 일일 활동량 숫자로 분류 1~4
+목표 유형(GoalType): 다이어트,유지,벌크업
+성별(Gender): 성별 추가
+목표 달성 여부(Achieved): 달성 여부 이진 변수로 표현
+목표 달성 기간(DaysToGoal): 목표 달성 기간
+
+<img width="577" height="213" alt="bmi가공사진" src="https://github.com/user-attachments/assets/98714bc6-ff1e-422d-8bb6-f64f7146a16b" />
+
+---
+
+<br><br>
+
+[식단 추천 기준 설정]
+
+
+<br><br>
+--- 
+
+<br><br>
+[운동 추천 기준 설정]
 * 운동 추천 로직: BMI와 같은 데이터를 기반으로 다음과 같은 운동을 추천할 수 있음.
     * 저체중: 체중 증가를 위한 근력 운동 + 고칼로리 식단.
     * 정상체중: 균형 잡힌 운동(유산소 + 근력 운동).
