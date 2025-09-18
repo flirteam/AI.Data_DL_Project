@@ -1,5 +1,18 @@
 # Data_ML_Project
 
+
+
+<img width="538" height="1146" alt="image" src="https://github.com/user-attachments/assets/3df8a5d8-35c5-4144-a741-e9b0e89b9a5f" />
+
+
+
+
+
+
+
+
+
+
 [ML프로젝트 간이 절차]
 
 
