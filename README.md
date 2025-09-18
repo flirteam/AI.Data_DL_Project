@@ -27,12 +27,24 @@
    <img src="image9.gif" width="200" />
 </p>
 
-[Fitter 구현 영상]
+
+<br><br>
 <p align="center">
-  <a href="Fitter구현 영상.mp4">
-    <img width="292" height="371" alt="피터앱실현영상썸네일" src="https://github.com/user-attachments/assets/9f34992d-0995-424d-b7ef-5a4419da340b" />
-  </a>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:ACDFD8,10:B6D7A8,30:D3FFCE,75:CBD0E3,100:A371F7&height=100&section=header&text=안녕하세요!&fontSize=50&textColor=000000" />
 </p>
+
+<h2 align="center"> 홍영훈 👋</h2>
+
+<p align="center">
+  🔹 데이터 가공,분석 및 AI / 딥러닝 파트<br>
+  🔹 데이터 사이언스,머신러닝, 신경망, 예측 모델링에 열정을 가지고 있습니다<br>
+  
+</p>
+
+<p align="center">
+  🌐 <a href="https://github.com/YEONGHUN-H" target="_blank">GitHub 바로가기</a>
+</p>
+
 
 
 
