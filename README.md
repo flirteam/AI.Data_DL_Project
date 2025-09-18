@@ -18,8 +18,7 @@
 
 
 <p align="center">
-  <img src="![fitter운동추천](https://github.com/user-attachments/assets/d7fca231-602f-4304-983c-23aff1e5a4ee)
-" width="400" />
+  <img src="fitter식단추천.gif" width="400" />
 </p>
 
 
