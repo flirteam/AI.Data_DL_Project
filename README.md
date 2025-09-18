@@ -16,11 +16,14 @@
 
 
 
+
 [
 <p align="center">
-<img width="205" height="454" alt="image" src="https://github.com/user-attachments/assets/3363fc09-8b7b-47e4-8557-4724a63576c4" />
-<img width="205" height="454" alt="image" src="https://github.com/user-attachments/assets/b64f5ef9-e701-48fa-b3ce-5535004164d0" />
+<img width="205" height="454" alt="image" src="https://github.com/user-attachments/assets/3363fc09-8b7b-47e4-8557-4724a63576c4.gif" />
+<img width="205" height="454" alt="image" src="![fitter식단추천](https://github.com/user-attachments/assets/98e0936f-7d9c-4cab-8d3e-7010f5896aad)
+" />
 </p>
+
 
 
 
