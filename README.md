@@ -27,6 +27,13 @@
    <img src="image9.gif" width="200" />
 </p>
 
+[Fitter 구현 영상]
+<p align="center">
+  <a href="Fitter구현 영상.mp4">
+    <img src="<img width="292" height="371" alt="피터앱실현영상썸네일" src="https://github.com/user-attachments/assets/f45082b6-a1cc-4068-9da4-8bfc73dfb821" />
+" width="400"/>
+  </a>
+</p>
 
 
 [ML프로젝트 간이 절차]
