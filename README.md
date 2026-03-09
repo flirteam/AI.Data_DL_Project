@@ -301,7 +301,7 @@ BMI 데이터 (체중, 키, 목표 체중)
 </p>
 <p align="center">
   <img width="300" height="546" alt="chat_image_1" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
-  &nbsp;&nbsp;&nbsp; <img width="200" height="346" alt="chat_image_2" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
+  &nbsp;&nbsp;&nbsp; <img width="300" height="546" alt="chat_image_2" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
 </p>
 
 
