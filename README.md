@@ -102,15 +102,15 @@ Data Processing
 
 GoalType(목표유형)과 WeightDiff(목표체중과 차이)기반 목표 달성 일수(DaysToGoal) 계산.
 <br>
-남성: 체중 범위 "(70~100)kg" 내에서 생성
-여성: 체중 범위 "(50~75)kg" 내에서 생성
+남성: 체중 범위 (70-100)kg 내에서 생성
+여성: 체중 범위 (50-75)kg 내에서 생성
 
 체중 변화량에 따른 DayToGoal 범위
 <img width="380" height="194" alt="image" src="https://github.com/user-attachments/assets/26f50cd9-6fe8-4ca0-bd62-1f64138d4ee7" />
 
 균등 분포 난수 함수를 활용하여, 설정된 범위 내에서 임의의 목표 예측일을 생성한다.
 <p align="center">
-  <img width="192" height="212" alt="스크린샷 2025-09-18 오후 2 49 31" src="https://github.com/user-attachments/assets/fa5e9f0a-4f7f-469d-87cf-120a33013435" />
+  <img width="192" height="212" alt="스크린샷 2025-09-18 오후 2 49 31" src="https://github.com/user-attachments/assets/26f50cd9-6fe8-4ca0-bd62-1f64138d4ee7/>
 균등 분포 난수 함수를 활용하여, 설정된 범위 내에서 임의의 목표 예측일을 생성한다.
 <img width="416" height="403" alt="image" src="https://github.com/user-attachments/assets/ce7b45be-3c2c-49cd-985a-d49dafc38844" />
 
