@@ -284,14 +284,6 @@ Adam 옵티마이저 & L2 규제: 보편적으로 성능이 좋은 Adam을 사�
 <p align="center">
    [최종 주요 기능-목표 체중 달성일 예측]
 </p>
-
-<p align="center">
-   <img width="200" height="346" alt="image" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
-</p>
-<p align="center">
-   <img width="200" height="346" alt="image" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
-</p>
-
 <p align="center">
    기능: 사용자의 신체 정보(BMI, 체중, 활동량 등)를 바탕으로 딥러닝 모델이 목표 체중까지 소요되는 기간을 예측.
 사용 데이터:
@@ -306,6 +298,11 @@ BMI 데이터 (체중, 키, 목표 체중)
 }
 
 </p>
+<p align="center">
+  <img width="200" height="346" alt="chat_image_1" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
+  &nbsp;&nbsp;&nbsp; <img width="200" height="346" alt="chat_image_2" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
+</p>
+
 
 <br><br>
 ---
@@ -317,10 +314,11 @@ BMI 데이터 (체중, 키, 목표 체중)
 <br>
 
 <p align="center">
-   <img width="200" height="346" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
+   <img width="300" height="346" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
 </p>
+<br>
 <p align="center">
-   <img width="200" height="346" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
+   <img width="400" height="446" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
 </p>
 <br><br>
 
