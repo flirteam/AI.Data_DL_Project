@@ -135,7 +135,7 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 <br><br>
 
 <p align="center">
-   [식단 추천 및 7일치 맞춤형 데이터 생성]
+   [규칙 기반 추천 알고리즘-식단 추천 및 7일치 맞춤형 데이터 생성]
 </p>
 <br>
 <img width="497" height="289" alt="image" src="https://github.com/user-attachments/assets/762d7b27-49d6-4e36-94dd-37a6c34d6ad4" />
@@ -166,7 +166,7 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 <br><br>
 
 <p align="center">
-   [운동 추천 및 7일치 맞춤형 데이터 생성]
+   [규칙 기반 추천 알고리즘-운동 추천 및 7일치 맞춤형 데이터 생성]
 </p>
 
 
@@ -193,296 +193,103 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 
 <br><br>
 ---
-
+<br>
 <p align="center">
    [모델 생성]
 </p>
 
+인공지능(딥러닝) 예측 모델
+<br>
+사용자의 신체 정보, 식단, 운동 데이터를 종합하여 '목표 달성까지 걸리는 예상 일수(DaysToGoal)'를 예측하는 파이토치(PyTorch) 기반의 심층 신경망(DNN) 회귀(Regression) 모델
+<br>
+🧠 1. 핵심 알고리즘: 심층 피드포워드 신경망 (Deep Feedforward NN)
 
-3. 모델 개발
-* 데이터 라벨링: 기존 데이터를 이용해 운동 추천을 위한 라벨을 추가. 예를 들어, "운동 유형" 컬럼에 "유산소", "근력", "혼합" 등의 값을 할당. 식단은 “채식”, “육식”
-* 모델 학습:
-    * 머신러닝 알고리즘(예: 분류 모델): 사용자 데이터를 입력하면 운동 유형을 예측하도록 학습.
-    * 추천 시스템: 비슷한 BMI, 나이, 성별을 가진 사용자 그룹을 생성하고 운동과 식단을 추천.
- 
+목표: 다양한 변수(체중, 섭취 칼로리, 운동 시간 등)가 '목표 달성 일수'에 미치는 복잡하고 비선형적인 관계를 AI가 스스로 학습하여 연속적인 수치(일수)를 예측.
+<br>
+구조 (FeedforwardNNImproved): 여러 개의 은닉층(Hidden Layer)을 거치며 데이터를 분석. 
+단순히 층만 깊게 쌓은 것이 아니라, 학습의 안정성을 위해 **배치 정규화(BatchNorm1d)**를 적용하고, 과적합(Overfitting)을 막기 위해 20%의 데이터를 무작위로 끄는 드롭아웃(Dropout) 기법을 사용하여 모델의 일반화 성능을 높임.
 
-4. 예측 및 평가
-* 모델 테스트: 새로운 사용자 데이터를 입력해 운동 추천 결과를 확인할 예정.
-* 모델 평가: 정확도, F1-score 등을 통해 추천 정확도를 평가할 예정.
+📊 2. 정교한 데이터 전처리 (Data Preprocessing)
 
+AI 모델이 데이터를 잘 소화하기 위한 3가지 핵심 전처리.
+<br>
+파생 변수 생성: '목표 체중'과 '현재 체중'의 단순 수치뿐만 아니라, 그 차이값인 WeightDifference를 새로운 특성(Feature)으로 추가해 모델이 '감량해야 할 절대적인 양'을 직관적으로 학습시킴.
+<br>
+스케일링 (StandardScaler): 칼로리(수천 단위)와 키/몸무게(백 단위), 시간(십 단위) 등 단위가 다른 변수들을 평균 0, 분산 1의 동일한 스케일로 맞춰주어 특정 변수가 결과를 과도하게 지배하는 것을 방지.
+<br>
+타겟 변수 로그 변환 (np.log1p): 예측 대상인 '일수(Days)' 데이터가 한쪽으로 치우쳐 있을(Skewed) 가능성에 대비해 로그 변환을 적용. 
+데이터의 분포를 정규분포에 가깝게 만들어 예측 정확도를 크게 높이는 기법 사용. 
+(평가 시에는 np.expm1로 다시 원래 일수로 복원.)
+<br>
+🔍 3. 교차 검증 및 하이퍼파라미터 튜닝 (Grid Search & K-Fold CV)
 
-아래는 딥러닝 모델과 관련된 내용을 중심으로 작성된 README 문서입니다. 프로젝트의 주요 딥러닝 관련 파일, 학습 및 배포 과정, 그리고 관련 내용이 포함되어 있습니다.
+모델의 최적 세팅을 찾기 위해 매우 견고한 검증 방식을 채택했습니다.
+<br>
+K-Fold 교차 검증 (K=5): 데이터를 5개로 쪼개어 번갈아 가며 학습과 검증을 수행합니다. 우연히 운이 좋아 성능이 높게 나오는 것을 방지하고, 모델의 '진짜 실력'을 객관적으로 평가합니다.
+<br>
+하이퍼파라미터 탐색: 층의 깊이, 학습률(Learning Rate), 배치 사이즈 등 모델의 성능을 결정하는 변수들의 여러 조합을 반복 테스트하여 최적의 조합(best_params)을 자동으로 찾아내도록 설계되었습니다.
+<br>
+⚙️ 4. 최신 최적화 및 조기 종료 전략 (Optimization & Early Stopping)
+<br>
+학습 과정을 효율적으로 통제하는 로직이 포함되어 있습니다.
+<br>
+Adam 옵티마이저 & L2 규제: 보편적으로 성능이 좋은 Adam을 사용하면서 weight_decay(L2 규제)를 추가해 가중치가 너무 커지는 것 방지.
 
-README: 딥러닝 기반 목표 예측 서비스
-프로젝트 개요
-이 프로젝트는 Feedforward Neural Network (FFNN) 기반으로 사용자의 목표 체중 달성일을 예측하는 딥러닝 모델을 구현하고 배포합니다. Google Colab에서 딥러닝 모델을 학습하였으며, Flask 및 Python 스크립트를 통해 예측 서비스를 제공합니다.
+학습률 스케줄러 (StepLR): 학습이 진행될수록 10 에포크(Epoch)마다 학습률을 절반(0.5)으로 줄여, 목표 지점 근처에서 더 세밀하게 정답을 찾아가도록 유도.
 
-주요 기능
-목표 체중 달성일 예측
+조기 종료 (Early Stopping): 50번의 학습을 다 채우지 않더라도, 7번(patience=7) 연속으로 검증 오차가 개선되지 않으면 학습을 즉시 정지. 이는 시간 낭비를 막고 과적합을 예방하는 필수 기술 사용.
+<br>
+💾 5. 평가 및 배포 준비 (Evaluation & Export)
 
-기능: 사용자의 신체 정보(BMI, 체중, 활동량 등)를 바탕으로 딥러닝 모델이 목표 체중까지 소요되는 기간을 예측.
+평가 지표: 다각도로 평가를 하기 위해 실제 걸린 일수와 모델이 예측한 일수의 차이를 직관적으로 보여주는 MAE(평균 절대 오차), 오차의 크기를 제곱하여 큰 페널티를 부여하는 MSE, 모델의 설명력을 나타내는 R²(결정계수) 등 사용.
+<br>
+추론(Inference) 대비: 학습이 끝난 후 '모델의 가중치(.pth)', '스케일러(.joblib)', '입력 특성 구조(.json)'를 모두 개별 파일로 저장. 
+->실제 서비스(웹/앱)에 AI 모델을 배포할 때 입력값이 훈련 때와 동일한 형태와 스케일을 갖도록 보장하는 파이프라인 구성.
+
+<br><br>
+---
+<br><br>
+
+📈 예측 모델 성능 평가 결과
+
+1. R² (결정계수): 0.99 (99%의 설명력)
+<br>
+
+2. Mean Absolute Error (MAE): 8.65일
+모델이 예측한 목표 달성일과 실제 달성일의 오차: 8.65일
+
+<br>
+(비즈니스적 가치): 다이어트나 벌크업 같은 장기적인 목표(예: 3~6개월)를 설정하는 사용자에게, ±8.65일(약 1주 남짓)이라는 매우 정밀하고 신뢰도 높은 예상 스케줄을 제공할 수 있음. "약 100일 뒤 목표 달성"이라고 예측했다면, 실제로는 91일~108일 사이에 달성하게 되는 식단과 운동 방식을 추천하여 효과적인 실무적 활용도를 가질 것이라고 예상.
+<br><br>
+
+<p align="center">
+   [최종 주요 기능-목표 체중 달성일 예측]
+</p>
+
+<p align="center">
+   기능: 사용자의 신체 정보(BMI, 체중, 활동량 등)를 바탕으로 딥러닝 모델이 목표 체중까지 소요되는 기간을 예측.
 사용 데이터:
 BMI 데이터 (체중, 키, 목표 체중)
 사용자 활동 수준 (TDEE, BMR)
 예측 결과:
-json
-코드 복사
+
 {
   "username": "홍길동",
   "days_to_goal": 45,
   "message": "홍길동님, 목표 체중 달성 예상 소요 기간은 약 45일입니다."
 }
-딥러닝 모델 설계 및 학습
 
-신경망 구조: Feedforward Neural Network (FFNN)
-은닉층: [128, 64, 32]
-활성화 함수: LeakyReLU
-최적화 기법: Adam Optimizer
-학습 데이터:
-입력 데이터: 사용자의 나이, 키, 현재 체중, 목표 체중, BMI, TDEE 등
-출력 데이터: 목표 체중 달성일까지 예상 소요 일수
-하이퍼파라미터 탐색: Grid Search를 통해 최적 하이퍼파라미터를 선택.
-모델 배포 및 운영
+</p>
 
-배포 방식:
-Python 스탠드얼론 스크립트를 사용하여 모델 예측 수행.
-Flask API 서버를 통해 RESTful 서비스로 배포 가능.
-입력 방식: JSON 형식.
-출력 방식: JSON 형식으로 예측 결과 반환.
-프로젝트 파일 구조
-plaintext
-코드 복사
-Project/
-│
-├── src/
-│   ├── python/
-│   │   ├── main_predictor.py         # 딥러닝 모델 기반 목표 예측 코드
-│   │   ├── Data/
-│   │   │   ├── feature_columns.json  # 모델 입력 피처 정보
-│   │   │   ├── scaler.joblib         # 데이터 스케일링 파일
-│   │   │   ├── P_model.pth           # 학습된 PyTorch 모델
-│   │
-│   ├── chatbot/
-│   │   ├── chatbot_handler.py        # 챗봇 핸들러 코드
-│   │   ├── sendbird_integration.py   # SendBird 플랫폼 연동
-│   │   ├── gpt_integration.py        # OpenAI GPT API 호출 코드
-│   │
-├── data/
-│   ├── bmi_data.csv                  # BMI 및 체중 데이터셋
-│   ├── exercise.csv                  # 운동 추천 데이터셋
-│   ├── food_data.csv                 # 식단 추천 데이터셋
-│
-├── requirements.txt                  # 필요 라이브러리 목록
-└── README.md                         # 프로젝트 설명서
-딥러닝 모델 설계
-Feedforward Neural Network (FFNN)
+<br><br>
+---
+<br><br>
 
-입력층: 사용자 데이터를 기반으로 한 총 25개의 입력 피처
-은닉층: [128, 64, 32]
-활성화 함수: LeakyReLU
-정규화: Batch Normalization 및 Dropout(0.2)
-출력층: 1개의 예측값 (목표 달성일까지의 소요 기간)
-최적화 및 손실 함수
-
-최적화 기법: Adam Optimizer
-손실 함수: Mean Squared Error (MSE)
-하이퍼파라미터 탐색
-
-탐색 기법: Grid Search
-탐색 범위:
-은닉층 크기: [128, 64, 32]
-학습률: [0.01, 0.005]
-배치 사이즈: [128, 256]
-최적 결과:
-은닉층: [128, 64, 32]
-학습률: 0.005
-배치 사이즈: 256
-필요 라이브러리
-requirements.txt 파일에서 다음 라이브러리 설치:
-
-plaintext
-코드 복사
-torch==1.13.1
-pandas==1.5.3
-numpy==1.22.4
-flask==2.2.3
-scikit-learn==1.1.3
-matplotlib==3.5.3
-seaborn==0.11.2
-joblib==1.1.0
-json==2.0.9
-모델 학습 및 실행
-데이터 준비
-
-BMI, 체중, TDEE, 활동 수준 등 사용자 데이터를 준비합니다.
-데이터는 CSV 형식으로 제공되며, bmi_data.csv를 통해 학습합니다.
-모델 학습 (Google Colab)
-
-Google Colab에서 GPU 환경을 사용하여 모델 학습.
-학습 코드 (src/python/main_predictor.py) 실행:
-python
-코드 복사
-python main_predictor.py
-모델 실행 (Standalone Script)
-
-표준 입력(JSON 형식)을 받아 예측 결과 반환:
-bash
-코드 복사
-python main_predictor.py < input.json
-모델 배포 (Flask API)
-
-Flask를 사용해 RESTful API로 배포:
-bash
-코드 복사
-flask run
-모델 평가
-평가 지표:
-
-MAE (Mean Absolute Error): 8.65
-R² (결정계수): 0.99
-결과 해석:
-
-높은 R² 값은 모델의 높은 예측 정확도를 나타냅니다.
-평균적으로 목표 달성일 예측은 ±8.65일의 오차를 가집니다.
-챗봇 연동
-SendBird 플랫폼 사용
-
-사용자의 질의에 대해 딥러닝 예측 결과를 응답합니다.
-chatbot_handler.py를 실행하여 챗봇 테스트.
-OpenAI GPT API 통합
-
-자연어 처리를 위해 GPT API를 호출하여 사용자와 상호작용.
+<p align="center">
+   [챗봇 서비스]
+</p>
 
 
-[목표 예측 및 추천 서비스 데이터 파이프라인]
-1. 데이터 탐색 및 준비
-데이터 확인
 
-BMI 데이터: 741명의 키, 몸무게, 성별, 나이, BMI 및 목표 체중 정보를 포함.
-운동 데이터: 운동 이름, 소모 칼로리, 운동 부위(상체, 하체 등), 운동 유형(근력, 유산소 등) 포함.
-식단 데이터: 음식 이름, 칼로리, 탄수화물, 단백질, 지방 등 식품 영양 정보를 포함.
-데이터셋 구조:
-plaintext
-코드 복사
-BMI 데이터셋: 키, 몸무게, 성별, 나이, BMI, 목표 체중
-운동 데이터셋: 운동 이름, 운동 부위, 소모 칼로리, 운동 유형
-식단 데이터셋: 음식 이름, 칼로리, 탄수화물, 단백질, 지방
-결측치 처리
 
-BMI 데이터: 결측값을 평균 또는 중앙값으로 채움.
-Weight, Height, Age의 결측값 → 평균으로 대체.
-TargetWeight: 체중의 90% 또는 체중 -10kg로 설정.
-운동/식단 데이터: 결측값이 존재하지 않음.
-데이터 변환 및 추가 피처 생성
-
-BMI 계산:
-BMI = 체중(kg) / (키(m)^2)
-BMR 및 TDEE 계산:
-BMR (기초대사량):
-남성: 10 * 체중 + 6.25 * 키(cm) - 5 * 나이 + 5
-여성: 10 * 체중 + 6.25 * 키(cm) - 5 * 나이 - 161
-TDEE (하루 총 에너지 소비량): BMR * 활동 수준 계수
-새로운 컬럼 생성:
-TargetBMI: 목표 체중으로 BMI 재계산.
-Calorie_Target: TDEE의 80%로 설정.
-관련 코드 예시:
-
-python
-코드 복사
-# 결측값 처리
-bmi_data.fillna({
-    'Weight': bmi_data['Weight'].mean(),
-    'Height': bmi_data['Height'].mean(),
-    'Age': bmi_data['Age'].median(),
-    'TargetWeight': bmi_data['Weight'] * 0.9  # 체중의 90%로 기본 설정
-}, inplace=True)
-
-# BMI 계산
-bmi_data['BMI'] = bmi_data['Weight'] / (bmi_data['Height'] ** 2)
-bmi_data['TargetBMI'] = bmi_data['TargetWeight'] / (bmi_data['Height'] ** 2)
-
-# BMR 및 TDEE 계산
-bmi_data['BMR'] = 10 * bmi_data['Weight'] + 6.25 * (bmi_data['Height'] * 100) - 5 * bmi_data['Age']
-bmi_data['BMR'] += bmi_data['Gender'].map({'Male': 5, 'Female': -161})
-bmi_data['TDEE'] = bmi_data['BMR'] * bmi_data['ActivityLevel']
-2. 운동 및 식단 추천 기준 설정
-운동 추천 기준
-
-BMI 및 활동 수준 기반으로 추천:
-저체중 (BMI < 18.5): 체중 증가를 위한 근력 운동 + 고칼로리 식단.
-정상 체중 (18.5 ≤ BMI < 25.0): 균형 잡힌 운동(유산소 + 근력 운동).
-과체중 (25.0 ≤ BMI < 30.0): 체중 감소를 위한 유산소 운동 중심 프로그램.
-비만 (BMI ≥ 30.0): 저강도 유산소 + 식단 조절.
-운동 부위 선택: 사용자가 선호하는 부위(예: 하체, 상체) 기반 추천.
-식단 추천 기준
-
-목표 칼로리(TDEE 80%)에 맞춰 하루 식단을 구성.
-식사 시간(아침, 점심, 저녁, 간식)에 따라 추천.
-영양소 비율:
-벌크업: 탄수화물 50%, 단백질 30%, 지방 20%.
-체중 감소: 탄수화물 40%, 단백질 40%, 지방 20%.
-음식 카테고리(밥, 국, 찌개 등)별 추천.
-3. 딥러닝 모델 개발
-데이터 라벨링
-
-BMI 및 목표 유형(벌크업, 감량 등)에 따라 운동 및 식단을 라벨링.
-예:
-운동 유형: 유산소, 근력, 혼합
-식단 유형: 고단백, 저지방
-모델 학습
-
-입력 피처: 나이, 키, 체중, 목표 체중, BMI, 활동 수준, 성별, 목표 유형 등.
-출력 피처: 목표 체중 달성일까지 예상 소요 기간.
-모델 구조: Feedforward Neural Network (FFNN).
-은닉층: [128, 64, 32]
-활성화 함수: LeakyReLU
-최적화 기법: Adam Optimizer
-모델 학습 및 최적화: Grid Search를 사용하여 하이퍼파라미터 최적화.
-관련 코드 예시:
-
-python
-코드 복사
-# Feedforward Neural Network 정의
-class FeedforwardNN(nn.Module):
-    def __init__(self, input_dim):
-        super(FeedforwardNN, self).__init__()
-        self.layers = nn.Sequential(
-            nn.Linear(input_dim, 128),
-            nn.LeakyReLU(),
-            nn.Linear(128, 64),
-            nn.LeakyReLU(),
-            nn.Linear(64, 32),
-            nn.LeakyReLU(),
-            nn.Linear(32, 1)
-        )
-
-    def forward(self, x):
-        return self.layers(x)
-4. 예측 및 평가
-모델 테스트
-
-새로운 사용자 데이터를 입력해 목표 달성일을 예측.
-예시 입력:
-json
-코드 복사
-{
-  "age": 25,
-  "height": 170,
-  "current_weight": 75,
-  "target_weight": 65,
-  "bmi": 25.9,
-  "tdee": 2200,
-  "activity_level": 3,
-  "gender": "Male",
-  "goal_type": "저지방 고단백"
-}
-모델 평가
-
-평가 지표:
-Mean Absolute Error (MAE): 8.65
-R² (결정계수): 0.99
-결과 해석
-
-예측 결과는 ±8.65일의 오차 내에서 정확하게 목표 달성일을 예측.
-위 내용은 데이터 준비, 가공, 추천 로직, 모델 학습 및 평가까지 딥러닝 기반 목표 예측 서비스의 전체 파이프라인을 정리한 것입니다
 
