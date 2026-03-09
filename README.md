@@ -76,7 +76,8 @@
 초기 데이터: https://www.kaggle.com/datasets/rukenmissonnier/age-weight-height-bmi-analysis
 <br>
 
-<img width="365" height="305" alt="스크린샷 2025-09-18 오후 3 00 10" src="https://github.com/user-attachments/assets/5578834b-56bb-4ee6-a4eb-13e67b341bc8" 
+<img width="365" height="305" alt="스크린샷 2025-09-18 오후 3 00 10" src="https://github.com/user-attachments/assets/5578834b-56bb-4ee6-a4eb-13e67b341bc8"
+/>
 </div>
 
 <데이터 샘플 >
