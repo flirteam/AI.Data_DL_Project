@@ -137,9 +137,11 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 <p align="center">
    [식단 추천 및 7일치 맞춤형 데이터 생성]
 </p>
-
+<br>
 <img width="497" height="289" alt="image" src="https://github.com/user-attachments/assets/762d7b27-49d6-4e36-94dd-37a6c34d6ad4" />
 <img width="492" height="113" alt="image" src="https://github.com/user-attachments/assets/6b213b80-e15a-49bc-8dd3-e14253b6c5df" />
+<br>
+
 일일 칼로리 균형 및 체중 변화 계산
 -> 일일 칼로리 균형(칼로리 적자): 총 섭취 칼로리 - (활동대사량+운동)
 
