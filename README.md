@@ -96,7 +96,21 @@
 
 초기 데이터를 활용하여 새로운 신체 데이터를 생성.
 <br>
-🚨 신체 정보 데이터는 개인정보! 기초 데이터를 토대로 임의의 값을 랜덤하게 할당하여 741개의 새로운 신체정보 데이터를 생성 🚨 
+🚨 신체 정보 데이터는 개인정보이기에 기초 데이터를 토대로 임의의 값을 랜덤하게 할당하여 741개의 새로운 신체정보 데이터를 생성하였다. 🚨 
+
+Data Processing
+
+GoalType(목표유형)과 WeightDiff(목표체중과 차이)기반 목표 달성 일수(DaysToGoal) 계산.
+<br>
+남성: 체중 범위 (70~100)kg 내에서 생성
+여성: 체중 범위 (50~75)kg 내에서 생성
+
+체중 변화량에 따른 DayToGoal 범위
+<img width="380" height="194" alt="image" src="https://github.com/user-attachments/assets/26f50cd9-6fe8-4ca0-bd62-1f64138d4ee7" />
+
+균등 분포 난수 함수를 활용하여, 설정된 범위 내에서 임의의 목표 예측일을 생성한다.
+<img width="416" height="403" alt="image" src="https://github.com/user-attachments/assets/ce7b45be-3c2c-49cd-985a-d49dafc38844" />
+
 <br><br>
 BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 목표 체중(TargetWeight): 개인별 목표 체중 설정 <br>
@@ -107,6 +121,8 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
 목표 달성 기간(DaysToGoal): 목표 달성 기간 <br>
 <br>
 <img width="577" height="213" alt="bmi가공사진" src="https://github.com/user-attachments/assets/98714bc6-ff1e-422d-8bb6-f64f7146a16b" />
+
+
 
 ---
 
