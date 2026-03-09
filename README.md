@@ -314,11 +314,11 @@ BMI 데이터 (체중, 키, 목표 체중)
 <br>
 
 <p align="center">
-   <img width="300" height="346" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
+   <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
 </p>
 <br>
 <p align="center">
-   <img width="400" height="446" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
+   <img width="400" height="646" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
 </p>
 <br><br>
 
@@ -340,11 +340,17 @@ Data & Backend: Python (식단/운동 데이터 전처리 및 추천 시스템 �
 <br>
 GPT-4o 기반 개인화 프롬프트 엔지니어링
 <br>
--> 단순한 챗봇이 아닌, 사전에 Python으로 구현한 추천 데이터(BMI, 목표, 식단 리스트)를 AI의 시스템 프롬프트(System Prompt)에 주입. 이를 통해 AI가 사용자 맞춤형 데이터를 기반으로 답변하도록 설계하여 할루시네이션(거짓 정보)을 최소화 및 알고리즘 기반으로 예측한 목표 달성일,식단,운동 정보 등 을 제공.
+-> 단순한 챗봇이 아닌, 사전에 Python으로 구현한 추천 데이터(BMI, 목표, 식단 리스트)를 AI의 시스템 프롬프트(System Prompt)에 주입.
+<br>이를 통해 AI가 사용자 맞춤형 데이터를 기반으로 답변하도록 설계하여 할루시네이션(거짓 정보)을 최소화 및 알고리즘 기반으로 예측한 목표 달성일,식단,운동 정보 등 을 제공.
 <br>
-Sendbird를 활용한 실시간 대화 환경 구축: Sendbird 채팅 솔루션을 도입하여 안정적이고 매끄러운 실시간 메시징(Real-time Messaging) UI/UX를 구현. 사용자와 AI 간의 접근성 높은 인터페이스 구현.
+Sendbird를 활용한 실시간 대화 환경 구축
 <br>
-데이터 기반 맞춤형 피트니스 컨설팅: 사용자가 입력한 신체 정보를 바탕으로 예측된 '목표 달성 예상일', '일일 칼로리 균형' 등의 분석 결과를 대화형으로 자연스럽게 안내하여 사용자 경험(UX) 극대화.
+->Sendbird 채팅 솔루션을 도입하여 안정적이고 매끄러운 실시간 메시징(Real-time Messaging) UI/UX를 구현.
+사용자와 AI 간의 접근성 높은 인터페이스 구현.
+<br>
+데이터 기반 맞춤형 피트니스 컨설팅
+<br>
+->사용자가 입력한 신체 정보를 바탕으로 예측된 '목표 달성 예상일', '일일 칼로리 균형' 등의 분석 결과를 대화형으로 자연스럽게 안내하여 사용자 경험(UX) 극대화.
 <br><br>
 
 5. 향후 개선 목표 (Future Scope)
