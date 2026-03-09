@@ -305,8 +305,42 @@ BMI 데이터 (체중, 키, 목표 체중)
 <br><br>
 
 <p align="center">
-   [챗봇 서비스]
+   [AI 기반 맞춤형 헬스케어 챗봇 서비스 구축]
 </p>
+<br>
+<p align="center">
+<img width="417" height="417" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
+</p>
+<br><br>
+
+1. 개요 (Overview)
+
+사용자의 신체 정보(BMI 등)와 자체 구축한 알고리즘을 연동하여, 실시간으로 맞춤형 피트니스 계획과 식단을 제안하는 대화형 AI 챗봇 서비스 구현.
+<br><br>
+
+2. 기술 스택 (Tech Stack)
+<br>
+AI & LLM: OpenAI GPT-4o API
+<br>
+Chat Platform: Sendbird SDK / API
+<br>
+Data & Backend: Python (식단/운동 데이터 전처리 및 추천 시스템 연동)
+<br><br>
+
+3. 핵심 구현 사항 (Key Features & Contributions)
+<br>
+GPT-4o 기반 개인화 프롬프트 엔지니어링
+<br>
+-> 단순한 챗봇이 아닌, 사전에 Python으로 구현한 추천 데이터(BMI, 목표, 식단 리스트)를 AI의 시스템 프롬프트(System Prompt)에 주입. 이를 통해 AI가 사용자 맞춤형 데이터를 기반으로 답변하도록 설계하여 할루시네이션(거짓 정보)을 최소화 및 알고리즘 기반으로 예측한 목표 달성일,식단,운동 정보 등 을 제공.
+<br>
+Sendbird를 활용한 실시간 대화 환경 구축: Sendbird 채팅 솔루션을 도입하여 안정적이고 매끄러운 실시간 메시징(Real-time Messaging) UI/UX를 구현. 사용자와 AI 간의 접근성 높은 인터페이스 구현.
+<br>
+데이터 기반 맞춤형 피트니스 컨설팅: 사용자가 입력한 신체 정보를 바탕으로 예측된 '목표 달성 예상일', '일일 칼로리 균형' 등의 분석 결과를 대화형으로 자연스럽게 안내하여 사용자 경험(UX) 극대화.
+<br><br>
+
+5. 향후 개선 목표 (Future Scope)
+추천 식단 레시피 정보 연동: 사용자가 챗봇을 통해 추천받은 식단을 실제로 요리할 수 있도록, 상세 레시피와 식재료 정보를 실시간으로 제공하는 기능 확장 구현 예정.
+
 
 
 
