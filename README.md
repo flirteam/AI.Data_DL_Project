@@ -106,7 +106,9 @@ GoalType(목표유형)과 WeightDiff(목표체중과 차이)기반 목표 달성
 여성: 체중 범위 (50-75)kg 내에서 생성
 
 체중 변화량에 따른 DayToGoal 범위
+<div align="center">
 <img width="380" height="194" alt="image" src="https://github.com/user-attachments/assets/26f50cd9-6fe8-4ca0-bd62-1f64138d4ee7" />
+</div>
 
 균등 분포 난수 함수를 활용하여, 설정된 범위 내에서 임의의 목표 예측일을 생성한다.
 
