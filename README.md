@@ -75,8 +75,8 @@
 
 초기 데이터: https://www.kaggle.com/datasets/rukenmissonnier/age-weight-height-bmi-analysis
 <br>
-<div align="center">
-<img width="365" height="305" alt="스크린샷 2025-09-18 오후 3 00 10" src="https://github.com/user-attachments/assets/5578834b-56bb-4ee6-a4eb-13e67b341bc8" />
+
+<img width="365" height="305" alt="스크린샷 2025-09-18 오후 3 00 10" src="https://github.com/user-attachments/assets/5578834b-56bb-4ee6-a4eb-13e67b341bc8" 
 </div>
 
 <데이터 샘플 >
@@ -106,11 +106,11 @@ GoalType(목표유형)과 WeightDiff(목표체중과 차이)기반 목표 달성
 <br>
 남성: 체중 범위 (70-100)kg 내에서 생성
 여성: 체중 범위 (50-75)kg 내에서 생성
-
+<br>
 체중 변화량에 따른 DayToGoal 범위
-<div align="center">
+
 <img width="380" height="194" alt="image" src="https://github.com/user-attachments/assets/26f50cd9-6fe8-4ca0-bd62-1f64138d4ee7" />
-</div>
+
 
 균등 분포 난수 함수를 활용하여, 설정된 범위 내에서 임의의 목표 예측일을 생성한다.
 
