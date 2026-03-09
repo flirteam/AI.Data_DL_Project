@@ -138,6 +138,7 @@ BMI 등급(BMI Class): BMI값을 기준으로 체중 상태 분류 <br>
    [규칙 기반 추천 알고리즘-식단 추천 및 7일치 맞춤형 데이터 생성]
 </p>
 <br>
+
 <img width="497" height="289" alt="image" src="https://github.com/user-attachments/assets/762d7b27-49d6-4e36-94dd-37a6c34d6ad4" />
 <img width="492" height="113" alt="image" src="https://github.com/user-attachments/assets/6b213b80-e15a-49bc-8dd3-e14253b6c5df" />
 <br>
@@ -299,7 +300,7 @@ BMI 데이터 (체중, 키, 목표 체중)
 
 </p>
 <p align="center">
-  <img width="200" height="346" alt="chat_image_1" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
+  <img width="300" height="546" alt="chat_image_1" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
   &nbsp;&nbsp;&nbsp; <img width="200" height="346" alt="chat_image_2" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
 </p>
 
@@ -315,11 +316,9 @@ BMI 데이터 (체중, 키, 목표 체중)
 
 <p align="center">
    <img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/efd8b056-086c-47f8-b206-d372cc1b7e3f" />
+   &nbsp;&nbsp;&nbsp; <img width="400" height="646" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
 </p>
-<br>
-<p align="center">
-   <img width="400" height="646" alt="image" src="https://github.com/user-attachments/assets/59c57476-9783-4639-be2a-e7a7b5b40b6b" />
-</p>
+
 <br><br>
 
 1. 개요 (Overview)
