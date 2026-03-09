@@ -272,7 +272,7 @@ Adam 옵티마이저 & L2 규제: 보편적으로 성능이 좋은 Adam을 사�
 </p>
 
 <br>
-1. R² (결정계수): 0.99 (99%의 설명력)
+R² (결정계수): 0.99 (99%의 설명력)
 <br>
 
 2. Mean Absolute Error (MAE): 8.65일
@@ -304,8 +304,6 @@ BMI 데이터 (체중, 키, 목표 체중)
   <img width="300" height="546" alt="chat_image_1" src="https://github.com/user-attachments/assets/75626dfd-4567-4932-8e08-966fdd45b031" />
   &nbsp;&nbsp;&nbsp; <img width="300" height="546" alt="chat_image_2" src="https://github.com/user-attachments/assets/f8586ae7-5d51-4db3-92f3-5098488ea87a" />
 </p>
-
-
 <br><br>
 
 ---
