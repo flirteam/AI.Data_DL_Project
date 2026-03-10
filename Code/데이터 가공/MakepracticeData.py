@@ -1,12 +1,12 @@
-import pandas as pd
+import pandas as pd # type: ignore
 import numpy as np
 import random
 
-# 파일 경로 설정
+# 파일 경로 설정 4개
 bmi_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/데이터증강_추가2.csv'
 exercise_path = '/content/drive/MyDrive/Colab Notebooks/P프로젝트/exercise.csv'
 food_path = '/content/drive/MyDrive/Colab Notebooks/P프로젝트/lastfood_data.csv'
-output_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침99.csv'
+output_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침100.csv'
 
 # 1. BMI 데이터 로드 및 전처리
 bmi_data = pd.read_csv(bmi_path)
@@ -78,7 +78,10 @@ def select_food(foods, carb_target, protein_target, fat_target, portion_factor):
         }
 
     foods['score'] = abs(foods['carbs'] - carb_target) + abs(foods['protein'] - protein_target) + abs(foods['fat'] - fat_target)
-    selected = foods.nsmallest(1, 'score')
+    
+    #무조건 1등이 아니라, 오차가 적은 상위 10개 중 랜덤으로 1개 선택하도록 설정
+    top_candidates = foods.nsmallest(10, 'score') 
+    selected = top_candidates.sample(n=1)
 
     portion = (portion_factor / selected['calories'].values[0]) * 100
 
@@ -166,10 +169,11 @@ def recommend_7_days_plan(bmi_data, exercise_base, food_data, output_csv_path):
             protein_target = (adjusted_amr * 0.3) / 4
             fat_target = (adjusted_amr * 0.2) / 9
 
-            preference = random.choice(['가슴', '어깨', '등', '하체', None])
-            exercises = recommend_exercises(user_info, exercise_base, preference)
+            
+            for day in range(1, 8):  #7일치 출력해주는 코드 
+                preference = random.choice(['가슴', '어깨', '등', '하체', None])
+                exercises = recommend_exercises(user_info, exercise_base, preference) # 이 코드가 rang(1,8)코드 밖에 위치했기에 반복된 운동이 출력됐었다.
 
-            for day in range(1, 8):
                 exercise_entry = {'user_id': user['user_id'], 'day': day, 'preferred_body_part': preference}
                 total_calories_burned = 0
                 total_duration = 0
