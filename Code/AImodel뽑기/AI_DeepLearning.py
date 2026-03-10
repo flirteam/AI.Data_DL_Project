@@ -11,7 +11,7 @@ import json
 from joblib import dump
 
 # 파일 경로 설정
-input_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침99.csv'
+input_path = '/content/drive/MyDrive/Colab Notebooks/P프끝/식단운동합침100.csv'
 
 # 1. 데이터 로드
 input_data = pd.read_csv(input_path)
